@@ -24,9 +24,13 @@ const defaultDatabase = async () => {
     // using loop to create 50 locations and title, then save them to mongodb
     for (let i = 0; i < 50; i++ ){
         const random = Math.floor(Math.random() * 1000);
+        const price = Math.floor(Math.random() * 30) + 10;
         const camp = new Campground({
             location: `${cities[random].city}, ${cities[random].state}`,
             title: `${randomArrayValue(descriptors)} ${randomArrayValue(places)}`,
+            image: 'https://source.unsplash.com/collection/483251',
+            description: 'some description here',
+            price: price,
         })
         await camp.save();
     }
