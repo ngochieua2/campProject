@@ -5,6 +5,7 @@ const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const expressError = require('./errorHandler/expressError');
 const session = require('express-session');
+const flash = require('connect-flash');
 
 //Routes
 const campgrounds = require('./routes/campgrounds');
@@ -48,6 +49,13 @@ const sessionConfigurationObject = {
     }
 }
 app.use(session(sessionConfigurationObject));
+
+//set up connect-flash
+app.use(flash());
+app.use((req, res , next) => {
+    res.locals.success = req.flash('success'); // it will be show in layout
+    next();
+})
 
 //set up routes
 app.use('/campgrounds', campgrounds);
