@@ -24,6 +24,7 @@ router.post('/', validateReview, catchAsync(async (req,res) => {
     campground.reviews.push(review);
     await review.save();
     await campground.save();
+    req.flash('success', 'review added');
     res.redirect(`/campgrounds/${campground._id}`);
 }))
 
@@ -32,6 +33,7 @@ router.delete('/:reviewId', catchAsync( async(req, res) => {
     await Campground.findByIdAndUpdate(id, { $pull: {reviews: reviewId}}); 
     // pull will remove an existing array all insances of value or value that match a specified condition
     await Review.findByIdAndDelete(reviewId);
+    req.flash('success', 'Successfully delete review');
     res.redirect(`/campgrounds/${id}`);
 }))
 

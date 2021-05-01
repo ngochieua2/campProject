@@ -53,7 +53,8 @@ app.use(session(sessionConfigurationObject));
 //set up connect-flash
 app.use(flash());
 app.use((req, res , next) => {
-    res.locals.success = req.flash('success'); // it will be show in layout
+    res.locals.success = req.flash('success'); //it will be show in layout with any router have key success
+    res.locals.error = req.flash('error'); //it will be show in layout with any router have key error
     next();
 })
 
