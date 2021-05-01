@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const ejsMate = require('ejs-mate');
 const methodOverride = require('method-override');
 const expressError = require('./errorHandler/expressError');
+const session = require('express-session');
 
 //Routes
 const campgrounds = require('./routes/campgrounds');
@@ -34,6 +35,19 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true})); // use req.body for post req...
 app.use(methodOverride('_method')); // set up method override for put and delete method in form
 app.use(express.static(path.join(__dirname, 'public'))); // access folder public and can read script function inside from layout
+
+// express session
+const sessionConfigurationObject = {
+    secret: 'thisismysecret!',
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        httpOnly: true,
+        expires: Date.now() + 1000 *60 *60 *24 *7, // milisecond *second *minute *hour *day
+        maxAge: 1000 *60 *60 *24 *7,
+    }
+}
+app.use(session(sessionConfigurationObject));
 
 //set up routes
 app.use('/campgrounds', campgrounds);
