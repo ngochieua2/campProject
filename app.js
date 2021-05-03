@@ -11,8 +11,9 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 
 //Routes
-const campgrounds = require('./routes/campgrounds');
-const reviews = require('./routes/reviews');
+const userRoutes = require('./routes/User');
+const campgroundRoutes = require('./routes/campgrounds');
+const reviewRoutes = require('./routes/reviews');
 
 const app = express();
 
@@ -75,8 +76,9 @@ app.get('/oneUser', async(req, res) => {
 })
 
 //set up routes
-app.use('/campgrounds', campgrounds);
-app.use('/campgrounds/:id/reviews', reviews);
+app.use('/', userRoutes);
+app.use('/campgrounds', campgroundRoutes);
+app.use('/campgrounds/:id/reviews', reviewRoutes);
 
 app.get('/', (req, res) => {
     res.render('home');
@@ -86,6 +88,7 @@ app.all('*', (req, res, next) => {
     next(new expressError('Page Not Found', 404));
 })
 
+// middleware for all error
 app.use((err, req, res, next) => {
     const {status = 500 } = err;
     if (!err.message) err.message = 'Oh No, Something Went Wrong!';
