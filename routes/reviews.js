@@ -1,22 +1,9 @@
 const express = require('express');
 const router = express.Router({mergeParams: true}); // to merge params and find id from params // line 22
-
-const catchAsync = require('../errorHandler/catchAsync');
-const expressError = require('../errorHandler/expressError');
-
+const catchAsync = require('../utilities/errorHandler/catchAsync');
 const Campground = require('../models/campground');
 const Review = require('../models/review');
-
-const { reviewSchema } = require('../public/joiSchema');
-
-const validateReview = ((req, res, next) =>{
-    const { error } = reviewSchema.validate(req.body);
-    if (error) {
-        const msg = error.details.map(el => el.message).join(',');
-        throw new expressError (msg, 400);
-    }
-    else next();
-})
+const { validateReview } = require('../utilities/middleware');
 
 router.post('/', validateReview, catchAsync(async (req,res) => {
     const campground = await Campground.findById(req.params.id);
@@ -24,7 +11,7 @@ router.post('/', validateReview, catchAsync(async (req,res) => {
     campground.reviews.push(review);
     await review.save();
     await campground.save();
-    req.flash('success', 'review added');
+    req.flash('success', 'Review added');
     res.redirect(`/campgrounds/${campground._id}`);
 }))
 
