@@ -6,6 +6,9 @@ const methodOverride = require('method-override');
 const expressError = require('./errorHandler/expressError');
 const session = require('express-session');
 const flash = require('connect-flash');
+const passport = require('passport');
+const LocalStrategy = require('passport-local');
+const User = require('./models/user');
 
 //Routes
 const campgrounds = require('./routes/campgrounds');
@@ -56,6 +59,19 @@ app.use((req, res , next) => {
     res.locals.success = req.flash('success'); //it will be show in layout with any router have key success
     res.locals.error = req.flash('error'); //it will be show in layout with any router have key error
     next();
+})
+
+//Set up passport
+app.use(passport.initialize());
+app.use(passport.session()); // must after app.use(session()...)
+passport.use(new LocalStrategy(User.authenticate()));
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
+//create a account by hard code // run once
+app.get('/oneUser', async(req, res) => {
+    const user = new User ({email: 'hieune@gmail.com', username: 'hieune'});
+    const newUser = await User.register(user, 'hieune');
+    res.send(newUser);
 })
 
 //set up routes
