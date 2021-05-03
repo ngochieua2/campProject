@@ -33,7 +33,9 @@ router.post('/login',
     passport.authenticate('local', {  failureFlash: true, failureRedirect: '/login' }),
     (req, res) => {
         req.flash('success', 'Login successfully');
-        res.redirect('/campgrounds');
+        const redirectUrl = req.session.currentUrl || '/campgrounds'
+        delete req.session.currentUrl;
+        res.redirect(redirectUrl);
 })
 
 router.get('/logout', (req, res) => {
