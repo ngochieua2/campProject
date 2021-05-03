@@ -54,14 +54,6 @@ const sessionConfigurationObject = {
 }
 app.use(session(sessionConfigurationObject));
 
-//set up connect-flash
-app.use(flash());
-app.use((req, res , next) => {
-    res.locals.success = req.flash('success'); //it will be show in layout with any router have key success
-    res.locals.error = req.flash('error'); //it will be show in layout with any router have key error
-    next();
-})
-
 //Set up passport
 app.use(passport.initialize());
 app.use(passport.session()); // must after app.use(session()...)
@@ -74,6 +66,18 @@ app.get('/oneUser', async(req, res) => {
     const newUser = await User.register(user, 'hieune');
     res.send(newUser);
 })
+
+//set up connect-flash
+app.use(flash());
+app.use((req, res , next) => {
+    // res.locals.something is create global variable and can access in anywhere
+    res.locals.currentUser = req.user; // store user info into currentUser variable // req.user only work when it is in after serializeUser and deserializeUser
+    res.locals.success = req.flash('success'); //it will be show in layout with any router have key success
+    res.locals.error = req.flash('error'); //it will be show in layout with any router have key error
+    next();
+})
+
+
 
 //set up routes
 app.use('/', userRoutes);
