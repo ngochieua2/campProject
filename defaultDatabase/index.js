@@ -26,6 +26,7 @@ const defaultDatabase = async () => {
         const random = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 30) + 10;
         const camp = new Campground({
+            author: '608fff14fd3a27210047b76d',
             location: `${cities[random].city}, ${cities[random].state}`,
             title: `${randomArrayValue(descriptors)} ${randomArrayValue(places)}`,
             image: 'https://source.unsplash.com/collection/483251',

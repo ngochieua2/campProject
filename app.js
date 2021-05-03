@@ -61,11 +61,11 @@ passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 //create a account by hard code // run once
-app.get('/oneUser', async(req, res) => {
-    const user = new User ({email: 'hieune@gmail.com', username: 'hieune'});
-    const newUser = await User.register(user, 'hieune');
-    res.send(newUser);
-})
+// app.get('/oneUser', async(req, res) => {
+//     const user = new User ({email: 'hieune@gmail.com', username: 'hieune'});
+//     const newUser = await User.register(user, 'hieune');
+//     res.send(newUser);
+// })
 
 //set up connect-flash
 app.use(flash());
