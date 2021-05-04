@@ -1,8 +1,6 @@
 const express = require('express');
 const router = express.Router({mergeParams: true}); // to merge params and find id from params // line 22
 const catchAsync = require('../utilities/errorHandler/catchAsync');
-const Campground = require('../models/campground');
-const Review = require('../models/review');
 const { validateReview, isLoggedIn, isReviewAuthor } = require('../utilities/middleware');
 const reviewsController = require('../controllers/reviews');
 
