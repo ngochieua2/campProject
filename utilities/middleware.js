@@ -1,10 +1,10 @@
 const expressError = require('./errorHandler/expressError');
 const { campgroundSchema, reviewSchema } = require('./joiSchema');
 const Campground = require('../models/campground');
-
+const Review = require('../models/review');
 
 // check user will login before create camp or edit it...
-module.exports.isLoggedIn = (req, res, next) => {
+module.exports.isLoggedIn = ((req, res, next) => {
     if(!req.isAuthenticated()) {
         // req.path  = /new
         // req.originalUrl = /campgrounds/new
@@ -13,7 +13,7 @@ module.exports.isLoggedIn = (req, res, next) => {
         return res.redirect('/login');
     }
     next();
-}
+})
 // use joi and and middleware to avoid wrong request from postman or something
 // check req will have correct format
 module.exports.validateCampground = ((req, res, next) =>{
@@ -26,7 +26,7 @@ module.exports.validateCampground = ((req, res, next) =>{
 })
 
 // check user is owner or not
-module.exports.isAuthor = async (req,res, next) =>{
+module.exports.isAuthor = (async (req,res, next) =>{
     const { id } = req.params;
     const campground = await Campground.findById(id);
     if (!campground.author.equals(req.user._id)) {
@@ -34,7 +34,7 @@ module.exports.isAuthor = async (req,res, next) =>{
         return res.redirect(`/campgrounds/${id}`);
     }
     next();
-}
+})
 
 // use joi and and middleware to avoid wrong request from postman or something
 // check req will have correct format
@@ -45,4 +45,15 @@ module.exports.validateReview = ((req, res, next) =>{
         throw new expressError (msg, 400);
     }
     else next();
+})
+
+// check user is review owner or not
+module.exports.isReviewAuthor = (async (req,res, next) =>{
+    const { id, reviewId } = req.params;
+    const review = await Review.findById(reviewId);
+    if (!review.author.equals(req.user._id)) {
+        req.flash('error', 'You do not have permission to do that');
+        return res.redirect(`/campgrounds/${id}`);
+    }
+    next();
 })
