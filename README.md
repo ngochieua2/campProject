@@ -8,3 +8,4 @@ test account: test/123456
 //login to see more feature message if people have not log in
 // after login will continue page // in user.js router
 // make star smaller
+// change name to camp-map

@@ -29,7 +29,12 @@ const defaultDatabase = async () => {
             author: '608fff14fd3a27210047b76d',
             location: `${cities[random].city}, ${cities[random].state}`,
             title: `${randomArrayValue(descriptors)} ${randomArrayValue(places)}`,
-            image: 'https://source.unsplash.com/collection/483251',
+            images: [
+                {
+                    url: 'https://source.unsplash.com/collection/483251',
+                    filename: 'default',
+                }
+            ],
             description: 'some description here',
             price: price,
         })
