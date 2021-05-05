@@ -13,6 +13,7 @@ module.exports.createPage = (req, res) => {
 module.exports.create = async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     //console.log(req.body); // note: {campground: {title: "", location: ""}} because form uses campground[title] and campground[location]
+    // check req.file to check it empty or not
     campground.images = req.files.map(file => ({url: file.path, filename: file.filename}));
     campground.author = req.user._id;
     await campground.save();
