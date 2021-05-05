@@ -9,3 +9,6 @@ test account: test/123456
 // after login will continue page // in user.js router
 // make star smaller
 // change name to camp-map
+// limit number of images when upload (maybe 10)
+// add error picture
+// change add database into cloudinary
