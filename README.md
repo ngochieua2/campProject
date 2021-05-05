@@ -12,3 +12,4 @@ test account: test/123456
 // limit number of images when upload (maybe 10)
 // add error picture
 // change add database into cloudinary
+// space in textarea
