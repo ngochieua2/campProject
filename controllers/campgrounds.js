@@ -12,7 +12,7 @@ module.exports.createPage = (req, res) => {
 module.exports.create = async (req, res, next) => {
     const campground = new Campground(req.body.campground);
     //console.log(req.body); // note: {campground: {title: "", location: ""}} because form uses campground[title] and campground[location]
-    campground.images = req.files.map(file => ({url: file.path, filename: file.filename}))
+    campground.images = req.files.map(file => ({url: file.path, filename: file.filename}));
     campground.author = req.user._id;
     await campground.save();
     req.flash('success', 'Successfully created a new campground');
@@ -44,6 +44,9 @@ module.exports.edit = async (req, res, next) => {
     const { id } = req.params;
     //console.log(req.params);
     const campground = await Campground.findByIdAndUpdate(id, {...req.body.campground});
+    const imgs = req.files.map(file => ({url: file.path, filename: file.filename}));
+    campground.images.push(...imgs);
+    await campground.save();
     req.flash('success', 'Successfully updated that campground');
     res.redirect(`/campgrounds/${campground._id}`);
 }
