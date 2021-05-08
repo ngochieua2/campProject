@@ -13,3 +13,4 @@ test account: test/123456
 // add error picture
 // change add database into cloudinary
 // space in textarea
+// delete camp will delete image in cloud
