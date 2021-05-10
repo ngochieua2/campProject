@@ -31,12 +31,19 @@ const defaultDatabase = async () => {
             title: `${randomArrayValue(descriptors)} ${randomArrayValue(places)}`,
             images: [
                 {
-                    url: 'https://source.unsplash.com/collection/483251',
-                    filename: 'default',
+                    url: 'https://res.cloudinary.com/ngochieua2/image/upload/v1620665221/campusMap/photo-1470246973918-29a93221c455_axz9rb.jpg',
+                    filename: 'campusMap/photo-1470246973918-29a93221c455_axz9rb',
                 }
             ],
             description: 'some description here',
             price: price,
+            geometry: {
+                type: "Point",
+                coordinates: [
+                    cities[random].longitude,
+                    cities[random].latitude,
+                ]
+            }
         })
         await camp.save();
     }

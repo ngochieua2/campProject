@@ -14,3 +14,4 @@ test account: test/123456
 // change add database into cloudinary
 // space in textarea
 // delete camp will delete image in cloud
+// change code of clusterMap.js. does not depend on feature...
