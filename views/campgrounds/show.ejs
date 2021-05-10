@@ -1,5 +1,6 @@
 <% layout('layouts/layout') %> 
 <link rel="stylesheet" href="/stylesheets/star-ability.css">
+
 <div class="row">
     <div class="col-6">
         <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">
@@ -47,6 +48,7 @@
         </div>
     </div>
     <div class="col-6">
+        <div class="mb-3" id='map' style='width: 400px; height: 300px;'></div>
         <% if (currentUser) { %> 
             <h2>Leave a Review</h2>
             <form action="/campgrounds/<%= campground._id %>/reviews" method="POST" class="mb-5 form-validation" novalidate>
@@ -92,3 +94,9 @@
         <% } %> 
     </div>
 </div>
+
+<script>
+    const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
+    const campgroundjs = <%- JSON.stringify(campground)%>;
+</script>
+<script src="/js/showMap.js"></script>
