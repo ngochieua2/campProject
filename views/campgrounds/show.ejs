@@ -97,6 +97,7 @@
 
 <script>
     const mapToken = '<%-process.env.MAPBOX_TOKEN%>';
-    const campgroundjs = <%- JSON.stringify(campground)%>;
+    let campgroundjs = '<%- JSON.stringify(campground)%>'; // get data as a string
+    campgroundjs = JSON.parse(campgroundjs); // convert string into json = remove ''
 </script>
 <script src="/js/showMap.js"></script>
