@@ -5,7 +5,9 @@ var map = new mapboxgl.Map({
     center: campgroundjs.geometry.coordinates, //[-74.5, 40], // starting position [lng, lat]
     zoom: 8 // starting zoom
 });
-//campgroundjs.geometry.coordinates ,
+
+map.addControl(new mapboxgl.NavigationControl());
+
 new mapboxgl.Marker()
     .setLngLat(campgroundjs.geometry.coordinates)
     .setPopup(
