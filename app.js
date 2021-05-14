@@ -14,6 +14,7 @@ const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
+const helmet = require('helmet');
 
 //Routes
 const userRoutes = require('./routes/User');
@@ -49,9 +50,11 @@ app.use(mongoSanitize({
         replaceWith: '_',
     })
 ); // use mongoSanitize to prevent specical sign in query like $gt, $in...
+app.use(helmet({contentSecurityPolicy: false})); // use 11 middleware in helmet
 
 // express session
 const sessionConfigurationObject = {
+    name: 'camp-session',
     secret: 'thisismysecret!',
     resave: false,
     saveUninitialized: true,
