@@ -24,7 +24,7 @@ const reviewRoutes = require('./routes/reviews');
 
 const app = express();
 
-const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campusMap';
+const dbUrl = process.env.DBURL || 'mongodb://localhost:27017/campusMap';
 //connect with database
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
