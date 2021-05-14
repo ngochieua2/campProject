@@ -124,7 +124,8 @@ app.use((err, req, res, next) => {
     res.status(status).render('error', { err });
 })
 
-//set up port in localhost
-app.listen(3000, ()=> {
-    console.log('Hi, server is on port 3000');
+//set up port 
+const port = process.env.PORT || 3000;
+app.listen(port, ()=> {
+    console.log(`Hi, server is on port ${port}`);
 })
