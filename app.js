@@ -13,6 +13,7 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 const User = require('./models/user');
+const mongoSanitize = require('express-mongo-sanitize');
 
 //Routes
 const userRoutes = require('./routes/User');
@@ -44,6 +45,10 @@ app.set('views', path.join(__dirname, 'views'));
 app.use(express.urlencoded({extended: true})); // use req.body for post req...
 app.use(methodOverride('_method')); // set up method override for put and delete method in form
 app.use(express.static(path.join(__dirname, 'public'))); // access folder public and can read script function inside from layout
+app.use(mongoSanitize({
+        replaceWith: '_',
+    })
+); // use mongoSanitize to prevent specical sign in query like $gt, $in...
 
 // express session
 const sessionConfigurationObject = {
@@ -80,8 +85,6 @@ app.use((req, res , next) => {
     res.locals.error = req.flash('error'); //it will be show in layout with any router have key error
     next();
 })
-
-
 
 //set up routes
 app.use('/', userRoutes);
