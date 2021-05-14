@@ -15,6 +15,7 @@ const LocalStrategy = require('passport-local');
 const User = require('./models/user');
 const mongoSanitize = require('express-mongo-sanitize');
 const helmet = require('helmet');
+const MongoStore = require('connect-mongo');
 
 //Routes
 const userRoutes = require('./routes/User');
@@ -23,8 +24,9 @@ const reviewRoutes = require('./routes/reviews');
 
 const app = express();
 
+const dbUrl = process.env.DB_URL || 'mongodb://localhost:27017/campusMap';
 //connect with database
-mongoose.connect('mongodb://localhost:27017/campusMap', {
+mongoose.connect(dbUrl, {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -52,10 +54,23 @@ app.use(mongoSanitize({
 ); // use mongoSanitize to prevent specical sign in query like $gt, $in...
 app.use(helmet({contentSecurityPolicy: false})); // use 11 middleware in helmet
 
+// set up mongo session or mongo store
+const secret = process.env.SECRET || 'thisismysecret!';
+const store = MongoStore.create({
+    mongoUrl: dbUrl,
+    secret,
+    touchAfter: 24*60*60,
+});
+
+store.on("error", function (e) {
+    console.log("SESSION STORE ERROR", e);
+});
+
 // express session
 const sessionConfigurationObject = {
+    store,
     name: 'camp-session',
-    secret: 'thisismysecret!',
+    secret,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -63,7 +78,7 @@ const sessionConfigurationObject = {
         expires: Date.now() + 1000 *60 *60 *24 *7, // milisecond *second *minute *hour *day
         maxAge: 1000 *60 *60 *24 *7,
     }
-}
+};
 app.use(session(sessionConfigurationObject));
 
 //Set up passport
