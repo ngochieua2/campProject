@@ -4,7 +4,7 @@ const { places, descriptors } = require('./supporting');
 const Campground = require('../models/campground');
 
 //connect with database
-mongoose.connect('mongodb://localhost:27017/campusMap', {
+mongoose.connect('mongodb://localhost:27017/campdb', {
     useNewUrlParser: true,
     useCreateIndex: true,
     useUnifiedTopology: true,
@@ -26,14 +26,14 @@ const defaultDatabase = async () => {
         const random = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 30) + 10;
         const camp = new Campground({
-            author: '608fff14fd3a27210047b76d',
+            author: '609f7b14c9e31023e456488c',
             location: `${cities[random].city}, ${cities[random].state}`,
             title: `${randomArrayValue(descriptors)} ${randomArrayValue(places)}`,
             images: [
-                {
-                    url: 'https://res.cloudinary.com/ngochieua2/image/upload/v1620665221/campusMap/photo-1470246973918-29a93221c455_axz9rb.jpg',
-                    filename: 'campusMap/photo-1470246973918-29a93221c455_axz9rb',
-                }
+                // {
+                //     url: 'https://res.cloudinary.com/ngochieua2/image/upload/v1620665221/campusMap/photo-1470246973918-29a93221c455_axz9rb.jpg',
+                //     filename: 'campusMap/photo-1470246973918-29a93221c455_axz9rb',
+                // }
             ],
             description: 'some description here',
             price: price,

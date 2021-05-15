@@ -10,7 +10,7 @@ cloudinary.config({
 const storage = new CloudinaryStorage({
     cloudinary,
     params: {
-        folder: 'campusMap',
+        folder: 'campProject',
         allowedFormats: ['jpeg', 'png', 'jpg'],
     },
 });

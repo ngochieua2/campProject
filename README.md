@@ -1,7 +1,4 @@
-# campusMap
-
-first account: hieune/hieune
-test account: test/123456
+# Camp Project
 
 // optional feature
 // say there is no review if no review in each show page

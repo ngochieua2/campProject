@@ -23,8 +23,8 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
 const app = express();
-
-const dbUrl = process.env.DBURL || 'mongodb://localhost:27017/campusMap';
+//process.env.DBURL ||
+const dbUrl = 'mongodb://localhost:27017/campdb';
 //connect with database
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
@@ -87,8 +87,9 @@ app.use(passport.session()); // must after app.use(session()...)
 passport.use(new LocalStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
+
 //create a account by hard code // run once
-// app.get('/oneUser', async(req, res) => {
+// app.get('/createUser', async(req, res) => {
 //     const user = new User ({email: 'hieune@gmail.com', username: 'hieune'});
 //     const newUser = await User.register(user, 'hieune');
 //     res.send(newUser);

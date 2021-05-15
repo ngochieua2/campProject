@@ -1,13 +1,22 @@
 <% layout('layouts/layout') %> 
-<div id="cluster-map"></div>
+<% if (!currentUser) { %> 
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Please login or register to see use more features</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<% } %> 
+<div class="mb-3" id="cluster-map"></div>
 <h1>All Campgrounds</h1>
 <div><a href="/campgrounds/new">Create New</a></div>
 <% for (let campground of campgrounds) { %>
     <div class="card mb-3">
         <div class="row">
             <div class="col-md-4">
-                <!-- may need to check logic -->
-                <img src="<%= campground.images[0].url %>" class="img-fluid" alt="picture here"> 
+                <% if (campground.images.length !== 0) { %> 
+                    <img src="<%= campground.images[0].url %>" class="img-fluid" alt="picture here"> 
+                <% } else { %> 
+                    <img src="/image/default.jpg" class="img-fluid" alt="picture here"> 
+                <% } %> 
             </div>
             <div class="col-md-8">
                 <div class="card-body">

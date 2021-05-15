@@ -1,6 +1,11 @@
 <% layout('layouts/layout') %> 
 <link rel="stylesheet" href="/stylesheets/star-ability.css">
-
+<% if (!currentUser) { %> 
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>Please login or register to see use more features</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+<% } %> 
 <div class="row">
     <div class="col-6">
         <div id="campgroundCarousel" class="carousel slide" data-bs-ride="carousel">

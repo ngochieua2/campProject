@@ -15,15 +15,15 @@
     <div class="cover-container d-flex w-100 h-100 p-3 mx-auto flex-column">
         <header class="mb-auto">
             <div>
-                <h3 class="float-md-left mb-0">Camp</h3>
-                <nav class="nav nav-masthead justify-content-center float-md-right">
-                    <a class="nav-link active" aria-current="page" href="#">Home</a>
+                <h3 class="mb-0 float-start">CampProject</h3>
+                <nav class="nav nav-justify justify-content-center float-none">
+                    <a class="nav-link active" aria-current="page" href="/">Home</a>
                     <a class="nav-link" href="/campgrounds">Campgrounds</a>
                     <% if(!currentUser) { %>
-                    <a class="nav-link" href="/login">Login</a>
-                    <a class="nav-link" href="/register">Register</a>
+                        <a class="nav-link" href="/login">Login</a>
+                        <a class="nav-link" href="/register">Register</a>
                     <% } else { %>
-                    <a class="nav-link" href="/logout">Logout</a>
+                        <a class="nav-link" href="/logout">Logout</a>
                     <% } %>
                 </nav>
             </div>
