@@ -17,13 +17,7 @@
                 <label for="formFileMultiple" class="form-label">Images: </label>
                 <input class="form-control" type="file" id="formFileMultiple" name="images" multiple>
                 <!-- <div class="valid-feedback">Looks good!</div> -->
-              </div>
-
-            <!-- <div class="mb-3">
-                <label class="form-label" for="images">Images:</label>
-                <input type="file" name="images" id="images" multiple>
-                <div class="valid-feedback">Looks good!</div>
-            </div> -->
+            </div>
             <div class="mb-3"> 
                 <label class="form-label" for="price">Campground Price:</label>   
                 <div class="input-group">
@@ -40,7 +34,10 @@
                 <div class="valid-feedback">Looks good!</div>
             </div>
             <div class="mb-3">
-                <button class="btn btn-success">Add Campground</button>
+                <button class="btn btn-success" 
+                    onClick="this.form.submit(); this.disabled=true;">
+                    Add Campground
+                </button>
             </div>
         </form>
         <a href="/campground">All Campgrounds</a>

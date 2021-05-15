@@ -52,7 +52,10 @@
                 <% }) %> 
             </div>
             <div class="mb-3">
-                <button class="btn btn-info">Update Campground</button>
+                <button class="btn btn-info" 
+                    onClick="this.form.submit(); this.disabled=true;">
+                    Update Campground
+                </button>
             </div>
         </form>
         <a href="/campgrounds/<%= campground._id %> ">Back to Campground</a>

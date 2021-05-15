@@ -41,7 +41,10 @@
                 <div class="card-body">
                     <a class="card-link btn btn-info" href="/campgrounds/<%= campground._id %>/edit">Edit</a>
                     <form class="d-inline" action="/campgrounds/<%= campground._id %>?_method=DELETE" method="POST">
-                        <button class="btn btn-danger">Delete</Button>
+                        <button class="btn btn-danger" 
+                                onClick="this.form.submit(); this.disabled=true;">
+                                Delete
+                        </Button>
                     </form>  
                 </div>
             <% } %> 
@@ -73,7 +76,10 @@
                     <textarea class="form-control" name="review[body]" id="body" cols="30" rows="3" required></textarea>
                     <div class="valid-feedback">Looks good!</div>
                 </div>
-                <button class="btn btn-success">Submit</button>
+                <button class="btn btn-success" 
+                        onClick="this.form.submit(); this.disabled=true;">
+                        Submit
+                </button>
             </form>
             <% } %> 
         <h2>All Review:</h2>
@@ -91,7 +97,10 @@
                     <% if (currentUser && review.author.equals(currentUser._id)) { %> 
                         <form action="/campgrounds/<%=campground._id%>/reviews/<%= review._id %>?_method=DELETE"
                             method="POST">
-                            <button class="btn btn-sm btn-danger">Delete review</button>
+                            <button class="btn btn-sm btn-danger"
+                                    onClick="this.form.submit(); this.disabled=true;">
+                                    Delete review
+                            </button>
                         </form>
                     <% } %> 
                 </div>
