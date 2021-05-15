@@ -28,8 +28,6 @@
             <% } %> 
         </div>
         <div class="card mb-3">
-
-            <!-- <img src="" class="card-img-top" alt="img"> -->
             <div class="card-body">
               <h5 class="card-title"><%= campground.title %></h5>
               <p class="card-text"><%= campground.description %></p>
@@ -79,7 +77,9 @@
             </form>
             <% } %> 
         <h2>All Review:</h2>
-        <!-- if no review, show mess -->
+        <% if (!campground.reviews.length) { %>
+            <div class="text-muted mt-3 mb-5">There is no review at the moment</div>
+        <% } %>  
         <% for (let review of campground.reviews) { %> 
             <div class="card mb-3">
                 <div class="card-body">
