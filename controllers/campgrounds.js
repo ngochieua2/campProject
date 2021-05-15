@@ -21,7 +21,6 @@ module.exports.create = async (req, res, next) => {
 
     const campground = new Campground(req.body.campground);
     //console.log(req.body); // note: {campground: {title: "", location: ""}} because form uses campground[title] and campground[location]
-    console.log(geoData.body.feature);
     campground.geometry = geoData.body.features[0].geometry;
     // check req.file to check it empty or not
     campground.images = req.files.map(file => ({url: file.path, filename: file.filename}));
