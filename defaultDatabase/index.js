@@ -26,7 +26,7 @@ const defaultDatabase = async () => {
         const random = Math.floor(Math.random() * 1000);
         const price = Math.floor(Math.random() * 30) + 10;
         const camp = new Campground({
-            author: '609f7b14c9e31023e456488c',
+            author: '60a23148b3f1a70015639cef',
             location: `${cities[random].city}, ${cities[random].state}`,
             title: `${randomArrayValue(descriptors)} ${randomArrayValue(places)}`,
             images: [
@@ -35,7 +35,7 @@ const defaultDatabase = async () => {
                 //     filename: 'campusMap/photo-1470246973918-29a93221c455_axz9rb',
                 // }
             ],
-            description: 'some description here',
+            description: 'Description was written here',
             price: price,
             geometry: {
                 type: "Point",
