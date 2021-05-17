@@ -23,8 +23,8 @@ const campgroundRoutes = require('./routes/campgrounds');
 const reviewRoutes = require('./routes/reviews');
 
 const app = express();
-//process.env.DBURL ||
-const dbUrl = 'mongodb://localhost:27017/campdb';
+
+const dbUrl = process.env.DBURL || 'mongodb://localhost:27017/campdb';
 //connect with database
 mongoose.connect(dbUrl, {
     useNewUrlParser: true,
