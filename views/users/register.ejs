@@ -29,7 +29,10 @@
                                 Looks good!
                             </div>
                         </div>
-                        <button class="btn btn-success btn-block">Register</button>
+                        <button class="btn btn-success btn-block"
+                                onClick="this.form.submit(); this.disabled=true;">
+                            Register
+                        </button>
                     </form>
 
                 </div>
@@ -37,22 +40,3 @@
         </div>
     </div>
 </div>
-<!-- <h1>Register</h1>
-<form action="/register" method="POST" class="form-validation" novalidate>
-    <div class="mb-3">
-        <label class="form-label" for="username">Username:</label>
-        <input class="form-control" type="text" id="username" name="username" required>
-        <div class="valid-feedback">Looks good!</div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="email">Emai:</label>
-        <input class="form-control" type="email" id="email" name="email" required>
-        <div class="valid-feedback">Looks good!</div>
-    </div>
-    <div class="mb-3">
-        <label class="form-label" for="password">Password:</label>
-        <input class="form-control" type="password" id="password" name="password" required>
-        <div class="valid-feedback">Looks good!</div>
-    </div>
-    <button class="btn btn-success">Register</button>
-</form> -->
